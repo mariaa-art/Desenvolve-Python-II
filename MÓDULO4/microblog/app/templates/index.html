@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Bem-vindo(a), {{ user.username|capitalize }}!</h2>
+    <div class="profile-section">
+        {% if user.foto %}
+            <img src="{{ user.foto }}" alt="Foto de perfil de {{ user.username }}" class="profile-img">
+        {% else %}
+            <div class="no-photo" aria-label="Sem foto de perfil">Sem Foto</div>
+        {% endif %}
+        <div>
+            <p style="margin: 0;"><strong>Sua Bio:</strong></p>
+            <p style="margin: 5px 0 0 0; color: #606770;">{{ user.bio if user.bio else 'Você ainda não escreveu uma biografia.' }}</p>
+        </div>
+    </div>
+    <hr style="border: 0; height: 1px; background: #e4e6eb; margin: 20px 0;">
+    <h3>Linha do Tempo</h3>
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post">
+                <div class="post-header">
+                    <span class="post-author">{{ post.author.username|capitalize }}</span>
+                    <time datetime="{{ post.timestamp }}">{{ post.timestamp.strftime('%d/%m/%Y às %H:%M') }}</time>
+                </div>
+                <div class="post-body">{{ post.body }}</div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>Ainda não há nenhum post. Seja o primeiro a <a href="{{ url_for('post') }}">escrever algo</a>!</p>
+    {% endif %}
+{% endblock %}

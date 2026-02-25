@@ -1,0 +1,6 @@
+# Arquivo de chaves da API
+key.json
+
+# Ambientes virtuais e cache do Python
+.venv/
+__pycache__/

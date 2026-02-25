@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Novo Post</h2>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="body">O que você está pensando, {{ current_user.username|capitalize }}?</label>
+            <textarea id="body" name="body" rows="4" required placeholder="Escreva aqui seu post... (Máx 140 caracteres)" maxlength="140"></textarea>
+        </div>
+        <button type="submit">Publicar</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;"><a href="{{ url_for('index') }}">Cancelar e Voltar</a></p>
+{% endblock %}
